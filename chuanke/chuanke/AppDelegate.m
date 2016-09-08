@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "JZCourseViewController.h"
+#import "MineViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +20,44 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // 1.
+    JZCourseViewController *vc1 = [[JZCourseViewController alloc] init];
+    vc1.title = @"课程推荐";
+    UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
+    MineViewController *vc2  = [[MineViewController alloc] init];
+    vc2.title = @"我的传课";
+    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:vc2];
+    UIViewController *vc3 = [[UIViewController alloc] init];
+    vc3.title = @"离线下载";
+    UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:vc3];
+    
+    // 2.
+    NSArray *viewCtrs = @[nav1, nav2, nav3];
+    
+    // 3.
+    self.rootTabbarCtr = [[UITabBarController alloc] init];
+    [self.rootTabbarCtr setViewControllers:viewCtrs animated:YES];
+    
+    // 4.
+    self.window.rootViewController = self.rootTabbarCtr;
+    
+    // 5.
+    UITabBar *tabbar = self.rootTabbarCtr.tabBar;
+    UITabBarItem *item0 = [tabbar.items objectAtIndex:0];
+    UITabBarItem *item1 = [tabbar.items objectAtIndex:1];
+    UITabBarItem *item2 = [tabbar.items objectAtIndex:2];
+    
+    item0.image = [[UIImage imageNamed:@"button_tab1_unpre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item0.selectedImage = [[UIImage imageNamed:@"button_tab1_pre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item1.image = [[UIImage imageNamed:@"bottom_tab2_unpre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item1.selectedImage = [[UIImage imageNamed:@"bottom_tab2_pre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item2.image = [[UIImage imageNamed:@"bottom_tab3_unpre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item2.selectedImage = [[UIImage imageNamed:@"bottom_tab3_pre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    // 改变 UITabBarItem 字体颜色
+    [[UITabBarItem appearance] setTitleTextAttributes:<#(nullable NSDictionary<NSString *,id> *)#> forState:<#(UIControlState)#>];
+    
     return YES;
 }
 
