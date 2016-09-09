@@ -10,4 +10,6 @@
 
 @interface JZCourseViewController : UIViewController
 
+@property(nonatomic, strong) UITableView *tableView;
+
 @end
