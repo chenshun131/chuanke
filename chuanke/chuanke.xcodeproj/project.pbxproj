@@ -20,6 +20,9 @@
 		8F515C7B1D82421200DE6645 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F515C7A1D82421200DE6645 /* QuartzCore.framework */; };
 		8F515C7D1D82421A00DE6645 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F515C7C1D82421A00DE6645 /* CoreGraphics.framework */; };
 		8F515C7F1D82428B00DE6645 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F515C7E1D82428B00DE6645 /* libstdc++.tbd */; };
+		8F515C871D824A9A00DE6645 /* LaunchImageIPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F515C861D824A9A00DE6645 /* LaunchImageIPhone.png */; };
+		8F515C891D824E1A00DE6645 /* classCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F515C881D824E1A00DE6645 /* classCategory.plist */; };
+		8F515C8B1D824E8800DE6645 /* iCategoryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F515C8A1D824E8800DE6645 /* iCategoryList.plist */; };
 		8FBFE5441D81743100884CF2 /* JZCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBFE5431D81743100884CF2 /* JZCourseViewController.m */; };
 		8FBFE5471D81753800884CF2 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBFE5461D81753800884CF2 /* MineViewController.m */; };
 		8FBFE5511D817AF300884CF2 /* bottom_tab1_pre@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FBFE54B1D817AF300884CF2 /* bottom_tab1_pre@2x.png */; };
@@ -72,6 +75,9 @@
 		8F515C7A1D82421200DE6645 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8F515C7C1D82421A00DE6645 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8F515C7E1D82428B00DE6645 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		8F515C861D824A9A00DE6645 /* LaunchImageIPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImageIPhone.png; sourceTree = "<group>"; };
+		8F515C881D824E1A00DE6645 /* classCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = classCategory.plist; sourceTree = "<group>"; };
+		8F515C8A1D824E8800DE6645 /* iCategoryList.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = iCategoryList.plist; sourceTree = "<group>"; };
 		8FBFE5421D81743100884CF2 /* JZCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCourseViewController.h; sourceTree = "<group>"; };
 		8FBFE5431D81743100884CF2 /* JZCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZCourseViewController.m; sourceTree = "<group>"; };
 		8FBFE5451D81753800884CF2 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
@@ -174,6 +180,7 @@
 		8FBFE5491D817AF300884CF2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8F515C861D824A9A00DE6645 /* LaunchImageIPhone.png */,
 				8FBFE54A1D817AF300884CF2 /* tabbar */,
 			);
 			path = Resource;
@@ -245,6 +252,8 @@
 		E2C3C0B81D806C2B007C5ADB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8F515C8A1D824E8800DE6645 /* iCategoryList.plist */,
+				8F515C881D824E1A00DE6645 /* classCategory.plist */,
 				E2C3C0B91D806C2B007C5ADB /* main.m */,
 			);
 			name = "Supporting Files";
@@ -415,9 +424,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F515C8B1D824E8800DE6645 /* iCategoryList.plist in Resources */,
 				8FBFE5531D817AF300884CF2 /* bottom_tab2_pre@2x.png in Resources */,
+				8F515C891D824E1A00DE6645 /* classCategory.plist in Resources */,
 				E2C3C0C81D806C2B007C5ADB /* LaunchScreen.storyboard in Resources */,
 				8FBFE5521D817AF300884CF2 /* bottom_tab1_unpre@2x.png in Resources */,
+				8F515C871D824A9A00DE6645 /* LaunchImageIPhone.png in Resources */,
 				8FBFE5511D817AF300884CF2 /* bottom_tab1_pre@2x.png in Resources */,
 				8FBFE5561D817AF300884CF2 /* bottom_tab3_unpre@2x.png in Resources */,
 				E2C3C0C51D806C2B007C5ADB /* Assets.xcassets in Resources */,
@@ -593,7 +605,6 @@
 		E2C3C0E31D806C2C007C5ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -611,7 +622,6 @@
 		E2C3C0E41D806C2C007C5ADB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
