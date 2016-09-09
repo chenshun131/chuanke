@@ -15,6 +15,11 @@
 #import "JZFocusListModel.h"
 #import "JZCourseDetailViewController.h"
 #import "JZCateViewController.h"
+#import "MJRefresh.h"
+#import "NetworkSingleton.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "JZAlbumListModel.h"
 
 @interface JZCourseViewController ()<UITableViewDelegate, UITableViewDataSource, ImageScrollViewDelegate, JZAlbumDelegate>
 {
@@ -128,10 +133,79 @@
     // 添加下拉的动画图片
     // 设置下拉刷新回调
     [self.tableView addGifHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    
+    // 设置普通状态的动画图片
+    NSMutableArray *idleImages = [NSMutableArray array];
+    for(NSUInteger i = 1; i <= 60; i++)
+    {
+        UIImage *image = [UIImage imageNamed:@"icon_listheader_animation_1"];
+        [idleImages addObject:image];
+    }
+    [self.tableView.gifHeader setImages:idleImages forState:MJRefreshHeaderStateIdle];
+    
+    // 设置即将刷新状态的动画图片
+    NSMutableArray *refreshingImages = [NSMutableArray array];
+    UIImage *image1 = [UIImage imageNamed:@"icon_listheader_animation_1"];
+    [refreshingImages addObject:image1];
+    UIImage *image2 = [UIImage imageNamed:@"icon_listheader_animation_2"];
+    [refreshingImages addObject:image2];
+    [self.tableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStatePulling];
+    
+    // 设置正在刷新是的动画图片
+    [self.tableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStateRefreshing];
+    
+    // 马上进入刷新状态
+    [self.tableView.gifHeader beginRefreshing];
 }
 
 - (void)loadNewData
 {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self getRecommendData];
+    });
+}
+
+// 请求推荐课程数据
+-(void)getRecommendData
+{
+    __weak typeof(self) weakself = self;
+    NSString *urlStr = @"http://pop.client.chuanke.com/?mod=recommend&act=mobile&client=2&limit=20";
+    [[NetworkSingleton sharedManager] getRecommendCourseResult:nil url:urlStr successBlock:^(id responseBody){
+        NSLog(@"请求推荐课程数据成功");
+        NSMutableArray *focusArray = [responseBody objectForKey:@"FocusList"];
+        NSMutableArray *courseArray = [responseBody objectForKey:@"CourseList"];
+        NSMutableArray *albumArray = [responseBody objectForKey:@"AlbumList"];
+        [_focusListArray removeAllObjects];
+        [_focusImgurlArray removeAllObjects];
+        [_courseListArray removeAllObjects];
+        [_albumListArray removeAllObjects];
+        [_albumImgurlArray removeAllObjects];
+        for (int i = 0; i < focusArray.count; ++i)
+        {
+            JZFocusListModel *jzFocusM = [JZFocusListModel objectWithKeyValues:focusArray[i]];
+            [_focusListArray addObject:jzFocusM];
+            [_focusImgurlArray addObject:jzFocusM.PhotoURL];
+        }
+        for (int i = 0; i < courseArray.count; ++i)
+        {
+            JZCourseListModel *jzCourseM = [JZCourseListModel objectWithKeyValues:courseArray[i]];
+            [_courseListArray addObject:jzCourseM];
+        }
+        for (int i = 0; i < albumArray.count; ++i)
+        {
+            JZAlbumListModel *jzAlbumM = [JZAlbumListModel objectWithKeyValues:albumArray[i]];
+            [_albumListArray addObject:jzAlbumM];
+            [_albumImgurlArray addObject:jzAlbumM.PhotoURL];
+        }
+        weakself.tableView.hidden = NO;
+        [weakself.tableView reloadData];
+        [weakself.tableView.header endRefreshing];
+    } failureBlock:^(NSString *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error];
+         NSLog(@"请求推荐课程数据失败：%@",error);
+         [weakself.tableView.header endRefreshing];
+     }];
 }
 
 - (void)OnNameBtn
