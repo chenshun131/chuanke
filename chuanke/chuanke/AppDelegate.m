@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "JZCourseViewController.h"
 #import "MineViewController.h"
+#import "iflyMSC/iFlyMSC.h"
 
 @interface AppDelegate ()
 
@@ -48,15 +49,23 @@
     UITabBarItem *item1 = [tabbar.items objectAtIndex:1];
     UITabBarItem *item2 = [tabbar.items objectAtIndex:2];
     
-    item0.image = [[UIImage imageNamed:@"button_tab1_unpre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    item0.selectedImage = [[UIImage imageNamed:@"button_tab1_pre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item0.image = [[UIImage imageNamed:@"bottom_tab1_unpre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item0.selectedImage = [[UIImage imageNamed:@"bottom_tab1_pre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item1.image = [[UIImage imageNamed:@"bottom_tab2_unpre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item1.selectedImage = [[UIImage imageNamed:@"bottom_tab2_pre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item2.image = [[UIImage imageNamed:@"bottom_tab3_unpre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item2.selectedImage = [[UIImage imageNamed:@"bottom_tab3_pre"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     // 改变 UITabBarItem 字体颜色
-    [[UITabBarItem appearance] setTitleTextAttributes:<#(nullable NSDictionary<NSString *,id> *)#> forState:<#(UIControlState)#>];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:navigationBarColor, UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 科大讯飞语音初始化
+        // 创建语音配置,appid必须要传入，仅执行一次则可
+        NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@", @"57d178ea"];
+        // 所有服务启动前，需要确保执行createUtility
+        [IFlySpeechUtility createUtility:initString];
+    });
     
     return YES;
 }
