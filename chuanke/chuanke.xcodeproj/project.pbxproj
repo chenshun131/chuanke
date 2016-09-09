@@ -44,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F515C621D823A5C00DE6645 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		8F515C631D823B6E00DE6645 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		8FBFE5421D81743100884CF2 /* JZCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCourseViewController.h; sourceTree = "<group>"; };
 		8FBFE5431D81743100884CF2 /* JZCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZCourseViewController.m; sourceTree = "<group>"; };
 		8FBFE5451D81753800884CF2 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				8FBFE5581D817D4100884CF2 /* Public.h */,
+				8F515C631D823B6E00DE6645 /* Constant.h */,
 			);
 			path = PublicClass;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				E2C3C0C41D806C2B007C5ADB /* Assets.xcassets */,
 				E2C3C0C61D806C2B007C5ADB /* LaunchScreen.storyboard */,
 				E2C3C0C91D806C2B007C5ADB /* Info.plist */,
+				8F515C621D823A5C00DE6645 /* PrefixHeader.pch */,
 				E2C3C0B81D806C2B007C5ADB /* Supporting Files */,
 			);
 			path = chuanke;
@@ -530,6 +534,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/chuanke/PrefixHeader.pch";
 				INFOPLIST_FILE = chuanke/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenshun.chuanke;
@@ -541,6 +547,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/chuanke/PrefixHeader.pch";
 				INFOPLIST_FILE = chuanke/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenshun.chuanke;
